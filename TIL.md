@@ -19,3 +19,8 @@ Gradient Boosting의 핵심 아이디어: 경사 하강법을 사용해 잔여 �
 `df_bikes.loc[730, 'yr'] = 1.0`loc 메서드를 사용하여 행과 열을 지정하여 특정 값을 변경할 수 있음
 
 `fillna` 메서드에 원본과 동일한 길이의 시리즈 객체를 전달하면 누락된 위치에 있는 값만 채우는데 사용함
+
+사이킷런의 `cross_val_score` 함수의 `scoring='neg_mean_squared_error'` 라고 쓰는 이유: 사이킷런은 점수가 높은것을 좋은 것으로 판단하기 때문
+
+`df.info()` 는 메모리 사용량도 확인시켜줌
+
