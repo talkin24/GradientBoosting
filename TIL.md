@@ -35,3 +35,5 @@ gini impurity는 낮을수록 분류가 잘 된 것. 0.5인 경우 무작위 추
 훈련된 reg 객체의 tree_ 속성에 훈련된 트리 객체가 저장되어 있음
 
 ​	children_left, children_right 속성은 자식 노드의 인덱스를 담고 있음. 따라서 이들이 -1이면 리프노드라는 의미
+
+GridSearchCV의 핵심은 매개변수 값의 딕셔너리를 만드는 것
