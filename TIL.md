@@ -37,3 +37,26 @@ gini impurity는 낮을수록 분류가 잘 된 것. 0.5인 경우 무작위 추
 ​	children_left, children_right 속성은 자식 노드의 인덱스를 담고 있음. 따라서 이들이 -1이면 리프노드라는 의미
 
 GridSearchCV의 핵심은 매개변수 값의 딕셔너리를 만드는 것
+
+`max_features` 옵션
+
+- 0~1: 전체 feature의 비율
+- 정수: 사용할 feature 개수
+- None, auto: 전체 feature
+- sort: 전체 feature의 제곱근
+- log2: 전체 feature의 로그(밑이2)
+
+`splitter` 옵션을 'random'으로 하면 과대적합을 막고 다양한 트리를 만들 수 있음. 'best' 옵션은 정보 이득이 가장 큰 특성만을 선택함
+
+회귀와 분류의 criterion은 다름
+
+- 회귀: squared_error, friedman_mse, absolute_error, poisson
+- 분류: gini, entropy
+
+`RandomizedSearchCV` 는 모든 조합을 테스트하는 대신 랜덤한 조합을 테스트함. 제한된 시간 내에 최적의 조합을 찾게 해줌. 또한 분포를 이용하여 연속적 매개변수 샘플링 가능. randint, uniform, loguniform 등
+
+모델을 결정한 후에는 테스트셋을 포함하여 모델을 훈련하는것이 정확도를 더 높일 수 있음. 단 모델을 실전에 투여했을 때 얻을 수 있는 성능을 추정하기 어려워짐
+
+`operator.itemgetter` 는 sorted 같은 함수의 key 매개변수에 적용하여 다양한 기준으로 정렬할 수 있도록 하는 모듈
+
+사이킷런에서 추천하는 특성 중요도 측정 방법은 `permutation_importance()`함수임. 이 함수는 기존 모델에 특성 하나를 랜덤하게 섞은 후 모델을 훈련하여 성능을 비교
