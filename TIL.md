@@ -194,4 +194,10 @@ XGB는 캐시를 고려한 prefetching을 사용함. 내부 버퍼를 할당하�
 
 ----
 
-XGB는 GB의 규제버전으로 볼 수도 있음. 목적함수의 일부로 규제를 포함하고 있기 때문.
+XGB는 GB의 규제버전으로 볼 수도 있음. 목적함수의 일부로 규제를 포함하고 있기 때문.(대부분의 트리 앙상블과 XGB가 다른 점)
+
+XGB의 목적함수 = 손실 함수 + 규제 항
+
+XGBoost가 테일러 급수를 사용하는 방법에 대한 설명 https://stats.stackexchange.com/questions/202858/xgboost-loss-function-approximation-with-taylor-expansion
+
+XGB의 규제항 = 리프 개수 + 리프노드의 점수 벡터 제곱의 함
