@@ -200,4 +200,20 @@ XGB의 목적함수 = 손실 함수 + 규제 항
 
 XGBoost가 테일러 급수를 사용하는 방법에 대한 설명 https://stats.stackexchange.com/questions/202858/xgboost-loss-function-approximation-with-taylor-expansion
 
-XGB의 규제항 = 리프 개수 + 리프노드의 점수 벡터 제곱의 함
+XGB의 규제항 = 리프 개수 + 리프노드의 점수 벡터 제곱의 합
+
+사이킷런 API 존재 이전에는 XGB의 모델 구축 러닝커브가 매우 가팔랐음
+
+`np.c_` 함수를 통해 두 넘파이 배열을 합칠 수 있음
+
+XGBClassifier의 objective 매개변수 기본값: 다중분류일 경우 'multi:softprob', 이진분류일 경우 'binary:logistic'
+
+RMSE와 타깃의 표준편차를 비교하여 모델 적합성을 대강 파악할 수도 있음
+
+pd.read_csv에서 압축을 바로 풀어줄 수 있음
+
+판다스는 파이썬의 del 키워드보다 drop() 메서드를 권장함
+
+타깃 데이터 간 클래스 불균형 문제 해결은 매우 중요한 문제
+
+사이킷런 API는 입력 데이터를 자동으로 DMatrix로 변환함. DMatrix는 속도를 위해 XGBoost가 최적화한 희소행렬임
