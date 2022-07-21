@@ -217,3 +217,19 @@ pd.read_csv에서 압축을 바로 풀어줄 수 있음
 타깃 데이터 간 클래스 불균형 문제 해결은 매우 중요한 문제
 
 사이킷런 API는 입력 데이터를 자동으로 DMatrix로 변환함. DMatrix는 속도를 위해 XGBoost가 최적화한 희소행렬임
+
+
+
+## Ch6. XGBoost Hyper-parameter
+
+StratifiedKFold(계층적 분할기): 각 폴드의 타깃 레이블의 비율을 동일하게 만듦
+
+cross_val_score() 함수와 GridSearchCV, RandomizedSearchCV에서 분류 모델을 받으면 기본적으로 StratifiedKFold 객체를 사용하기 때문에 cv 매개변수에 폴드수만 지정해도 됨
+
+train_test_split() 함수는 기본적으로 데이터를 섞어서 나눔(shuffle=True)
+
+모델의 하이퍼파라미터는 같은데 폴드의 차이로 점수가 다른 경우, 점수의 차이는 모델의 우위를 말할 수 없음
+
+gamma 매개변수는 라그랑주 승수라고도 부름. 노드 분할을 위한 최소 손실 감소를 지정
+
+조기종료를 통해 훈련 횟수를 제한할 수 있음
