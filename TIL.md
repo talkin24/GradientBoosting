@@ -329,6 +329,10 @@ gblinear는 강력한 옵션이지만 선형 모델이 트리 기반 모델보�
 
 DART는 드롭아웃을 위해 추가 매개변수가 있는 gbtree라고 볼 수 있음
 
+추가 매개변수: `sample_type, normalize_type,  rate_drop, one_drop, skip_drop`
+
+dart는 XGB 프레임워크의 강력한 옵션. gbtree의 매개변수를 모두 이용할 수 있기 때문에 기본학습기를 dart로 쉽게 변환 가능
+
 #### RF
 
 `num_parallel_tree` 매개변수를 1보다 큰 값으로 설정하여 RF를 기본학습기로 사용할 수 있음
@@ -337,8 +341,26 @@ GB는 RF 같이 강한 학습기가 아니라 비교적 약한 학습기의 오�
 
 XGBoost는 XGBRFRegressor, XGBRFClassifier를 제공함. 사이킷런의 RF와 비슷하나 XGB는 오버피팅을 방지하기 위한 기본 매개변수를 포함하고 있고 개별 트리를 만드는 방법이 다름
 
+XGB에서 RF를 구현하는 방법은 2가지
+
+1. RF를 기본학습기로 사용
+   - RF기본학습기는 booster 매개변수에서 지정하지 않음. `num_parallel_tree` 매개변수를 1보다 크게 지정하면 gbtree를 부스팅 랜덤포레스트로 바꿈. 즉 부스팅 단계마다 하나의 트리가 아니라 여러개의 트리를 사용하여 앙상블을 구축함
+2. XGBRFRegressor와 XGBRFClassifier를 사용하는 것
+   - `num_parallel_tree` 가 아니라 `n_estimators` 를 사용. GB가 아니라 배깅 방식
+   - `learning_rate` 는 한단계의 부스팅을 사용하는 이 모델들을 위한 것이 아니기 때문에 조정하지 않는 것이 좋음
+   - `subsample, colsample_by_node` : 기본값이 0.8이므로 과대적합될 가능성이 낮음. 사이킷런의 랜덤 포레스트 구현과 큰 차이점.
+
+RF를 기본 학습기로 사용하는 일은 많지 않음
+
+XGB의 RF구현 모델들은 사이킷런의 RF 모델들 대신 사용할 수 있음
+
+
+
 
 
 여러 조합을 dictionary로 만들어 비대칭 그리드 서치를 할 수 있음
 
 사이킷런은 2차원 배열의 특성과 1차원 배열의 타깃을 기대함
+
+
+
