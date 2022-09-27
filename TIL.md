@@ -420,3 +420,25 @@ pd.get_dummies() 함수 단점
 
 수치형을 희소행렬로 변환하거나, 원핫인코딩 출력을 일반 df로 변환하거나
 
+사이킷런에서 제공하는 변환기가 자동화에 최선이 아닐 수 있음. `TransformerMixin` 클래스를 상속받아 사용자 정의 변환기를 만들어야 함
+
+``` python
+class YourClass(TransformerMixin):
+  def __init__(self):
+    None
+  def fit(self, X, y=None):
+    return self
+  def transform(self, X, y=None):
+    return X
+```
+
+- 초기화 할 것 없음
+- fit() 메서드는 항상 self를 반환
+- transform() 메서드에 모든 데이터 변환 코드를 넣으면 됨
+
+`ColumnTransformer` 클래스를 사용하면 입력 데이터의 열마다 다른 변환기를 적용할 수 있음
+
+원핫인코딩도 `ColumnTransformer`를 사용하여 처리할 수 있음
+
+희소행렬이 아닌 df으로 원핫인코딩을 수행하면, 칼럼명과 범주 이름을 합쳐 새로운 특성명을 만들어냄
+
